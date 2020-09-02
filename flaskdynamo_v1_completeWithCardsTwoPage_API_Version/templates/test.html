@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <title></title>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      </head>
+  <body>
+    <h6> Create a new user here </h6>
+    <form action="{{ url_for('student')}}" method="POST">
+      <div class="l2">
+        <input type="number" name="id" placeholder="ID:">
+        <input type="text" name="name" placeholder="NAME:">                     
+        <input type="text" name="email" placeholder="EMAIL:">                                                           
+        <input type="text" name="contactno" placeholder="Number:">                    
+        <button type="submit" class="btn"><i class="fa fa-plus"></i></button>
+      </div>
+    </form> 
+  
+    <h6> Existing user's </h6>
+    {% for key,value in data.items() %}  
+      {%  if key == 'Items' %}
+        {%  for item in value %} 
+        <div class="card">
+          <div class="container"> 
+                <input type="text" name="_id" value="{{ item['_id'] }}" placeholder="{{ item['_id'] }}" >
+                <input type="text" name="ID" value="{{ item['ID'] }}" placeholder="{{ item['ID'] }}" >
+                <input type="text" name="name" value="{{ item['NAME1'] }}" placeholder="{{ item['NAME1'] }}" >
+                <input type="text" name="email" value="{{ item['EMAIL'] }}" placeholder="{{ item['EMAIL']}}">
+                <input type="text" name="contactno" value="{{ item['CONTACTNO']}}" placeholder="{{ item['CONTACTNO']}}">
+                <a href="/newupdate?_id={{item['_id']}}"><button type="submit" class="btn"><i class="fa fa-pencil"></i></button></a>
+                <a href="/delete?_id={{item['_id']}}"><button type="submit" class="btn"><i class="fa fa-trash"></i></button></a>
+                <a href="/newaddress?_id={{item['_id']}}&name5={{item['NAME1']}}"><button type="submit" class="btn"><i class="fa fa-address-book"></i></button></a>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}        
+{% endfor %} 
+  </body>     
+</html>

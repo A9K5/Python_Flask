@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form action="{{ url_for('temp3')}}" method = "POST">
+            <h6> Existing user's </h6>
+            {%  for item in tasks %} 
+                <div class="card">
+                <div class="container"> 
+                    <input type="text" name="_id" value="{{ item['_id']['S'] }}" placeholder="{{ item['_id']['S'] }}" >
+                    <input type="text" name="ID" value="{{ item['ID'] }}" placeholder="{{ item['ID'] }}" >
+                    <input type="text" name="name" value="{{ item['NAME1'] }}" placeholder="{{ item['NAME1'] }}" >
+                    <input type="text" name="email" value="{{ item['EMAIL'] }}" placeholder="{{ item['EMAIL']}}">
+                    <input type="text" name="contactno" value="{{ item['CONTACTNO']}}" placeholder="{{ item['CONTACTNO']}}">                    
+                </div>
+                </div>
+            {% endfor %}         
+            <input type="text" name="startToken" value={{startToken}} >
+            <button type="submit" name="action1" value="{{startToken}}" class="btn"> Next </button>
+            <p>{{startToken}}</p>
+
+        </form>
+    </body>
+</html>

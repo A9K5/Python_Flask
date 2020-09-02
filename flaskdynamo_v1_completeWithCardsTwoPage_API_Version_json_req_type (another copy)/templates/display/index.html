@@ -1,0 +1,17 @@
+{{ pagination.info }}
+{{ pagination.links }}
+<table>
+  <thead>
+    
+  </thead>
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td>{{ loop.index + pagination.skip }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{{ pagination.links }}

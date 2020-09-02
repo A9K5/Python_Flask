@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+    <body>
+        <p> the table data are displayed over here.</p>
+        <p>  {{ret1}}  </p>
+        {% for key1 in ret1 %}
+            <tr>                
+                {% for k in key1.keys() %}
+                <th> {{ k }}  </th>:
+                <th> {{  key1[k] }} </th><br>
+                {% endfor %}<br>
+            </tr>
+           {% endfor %} 
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+    <head>
+            <script type = "text/javascript" 
+            src = "{{ url_for('static', filename = 'redirect.js') }}" ></script>
+        <title>
+            CRUD MongoDB
+        </title>
+    </head>
+    <body>
+        <h1>CRUD operations</h1>
+        <button name="create" type="submit" onClick="Mcreate()" value="create">Create</button>
+        <button name="read" type="submit" onClick="Mread()" value="">Retreive</button>
+        <button name="update" type="submit" onClick="Mupdate()" value="">Update</button>
+        <button name="delete" type="submit" onClick="Mdelete()" value="">Delete</button>
+    </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The XMLHttpRequest Object</h1>
+
+<button type="button" onclick="loadDoc()">Request data</button>
+
+<p id="demo"></p>
+
+<button type="button" onclick="loadDoc()">Post data</button>
+
+<p id="demoPost"></p>
+ 
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "http://192.168.43.140:5000/test", true);
+  xhttp.send();
+}
+</script>
+
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        console.log(this.statusText);
+      document.getElementById("demoPost").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("POST", "http://192.168.43.140:5000/test/post", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  var test ={
+      'value' : "a"
+  }
+  xhttp.send(test);
+}
+</script>
+</body>
+</html>

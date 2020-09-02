@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <title>
+
+    </title>
+    <body>
+        <form action = "/action" method="POST">
+            {%  for task in tasks %}
+                <input type="text" name="_id" value="{{task['_id']}}" placeholder="{{ task['_id'] }}">
+                <input type="text" name="name" value=" {{task['NAME']}} " placeholder="{{ task['NAME'] }}">
+                <input type="number" name="id" value="{{task['ID']}}" placeholder="  {{ task['ID'] }}">
+                <input type="text" name="city" value="{{task['CITY']}}" placeholder="{{ task['CITY']}}">
+
+            {%  endfor %}
+            <button type="submit"> Update Task </button>
+        </form>
+    </body>
+
+</html>

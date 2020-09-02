@@ -1,0 +1,32 @@
+Dashboard:
+{
+    Cpu  [Timestamp in UTC format]
+    Ram Usage
+    Disk usage
+}
+Display logs (Apache2)
+
+No.of users logged in
+No.of running tasks
+Ports monitoring(Enable/Disable)
+
+MongoDB Connection- 
+    Running details
+    Disk Usage
+    No.of users logged in.
+
+
+
+
+MongoDB Backup operation's Study
+
+No.of scheduler's count.
+
+
+
+
+
+Analytics:
+    Display S3
+        List items
+        Download / View CSV

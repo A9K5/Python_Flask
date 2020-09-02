@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>
+            <script src="static/my_jquery.js">
+        </script>
+    <body>
+        <p> 
+                <form action="{{ url_for('student')}}" method="GET">
+                    <input type="number" name="id" placeholder="ID:">
+                    <input type="text" name="name" placeholder="NAME:">                     
+                    <input type="text" name="email" placeholder="EMAIL:">                                                           
+                    <input type="text" name="contactno" placeholder="Number:">                    
+                    <input type="submit" value="Submit">
+                </form>        
+        </p>
+        <table >        
+               
+        </table>
+    </body>
+</html>

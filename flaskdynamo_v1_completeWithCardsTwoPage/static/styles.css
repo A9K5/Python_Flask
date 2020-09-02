@@ -1,0 +1,49 @@
+body{
+    background-color: #efefef;
+    padding: 15px;
+}
+
+.l1{
+    background-color: #fff;
+    padding: 0px 10px 2px 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+    transition: 0.4s;
+    width: 98%;
+}
+.l2{
+    background-color: #fff;
+    padding: 0px 0px 2px 20px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+    transition: 0.4s;
+    width: 280px;
+}
+.l2 input[type="text"] {
+    width:250px;
+}
+.card {
+    background-color: rgb(53, 108, 228);
+    padding: 0px 10px 2px 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+    transition: 0.4s;
+    width: 280px;
+}
+.l3{
+    background-color: #fff;
+    padding: 0px 0px 2px 20px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+    transition: 0.4s;
+    width: 280px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(1, 11, 23, 0.2);
+}
+
+.container {
+    padding: 10px 10px 10px 10px;
+}
+
+button{
+    width: 200px;
+}

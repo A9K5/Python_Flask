@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form action="{{  url_for('temp2') }}" method = "POST">
+            <h6> Existing user's </h6>
+            <!--    Below code is for displaying elements   -->
+            {%  for item in tasks  %} 
+                <div class="card">
+                    <div class="container"> 
+                        <input type="text" name="_id" value="{{ item['_id'] }}" placeholder="{{ item['_id'] }}" >
+                        <input type="text" name="name" value="{{ item['name'] }}" placeholder="{{ item['name'] }}" >
+                        <input type="text" name="email" value="{{ item['email'] }}" placeholder="{{ item['email']}}">
+                        <input type="text" name="contactno" value="{{ item['contactno']}}" placeholder="{{ item['contactno']}}">                    
+                    </div>
+                </div>
+            {%  endfor  %}      
+                {{ list1 }}
+            <h6> {{  lastevalkey  }} </h6>
+            {% if lastevalkey %}               
+                <input type="text" name="list1" value="{{list1}}">
+                <input type="text" name="id" value="{{lastevalkey}}">                               
+                <button type="submit" name="flown" value="Next" class="btn"> Next </button>
+                <!-- <button type="submit" name="flown" value="Prev" class="btn"> Prev </button> -->
+            {% else %}
+                <input type="text" name="list1" value="{{list1}}">
+                <input type="text" name="id" value="{{lastevalkey}}">  
+                <p> No next entries </p>
+                <!-- <button type="submit" name="flown" value="Prev" class="btn"> Prev </button> -->
+            {% endif %}
+            {% if list1|length > 1 %}
+                <button type="submit" name="flown" value="Prev" class="btn"> Prev </button>
+            {% endif %}
+        </form>
+    </body>
+</html>

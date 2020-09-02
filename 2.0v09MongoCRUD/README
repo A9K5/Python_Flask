@@ -1,0 +1,13 @@
+If a database does not exist, MongoDB creates the database when you 
+first store data for that database. As such, you can switch to a 
+non-existent database and perform the following operation in the 
+mongo shell:
+
+use myNewDB
+db.myNewCollection1.insertOne( { x: 1 } )
+
+If a collection does not exist, MongoDB creates the collection when
+ you first store data for that collection.
+
+db.myNewCollection2.insertOne( { x: 1 } )
+db.myNewCollection3.createIndex( { y: 1 } )

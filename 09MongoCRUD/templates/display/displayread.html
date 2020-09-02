@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <body>
+        <p> the table data are displayed over here.</p>
+        <p>  </p>
+        <table >
+        
+        {% for ret1 in ret1s %}
+                   
+            <tr>                
+                
+                    <td>{{ret1["NAME"]}}</td>
+                    <td>{{ret1["ID"]}}</td>
+                    <td>{{ret1["CITY"]}}</td>
+                    <td><a href="/newupdate?_id={{ret1['_id']}}"><button type="submit">EDIT</button></a></td>
+                    <td><a href="/newdelete?_id={{ret1['_id']}}"><button type="submit">Delete</button></a></td>
+            </tr>            
+        {% endfor %}
+        
+        </table>
+    </body>
+</html>

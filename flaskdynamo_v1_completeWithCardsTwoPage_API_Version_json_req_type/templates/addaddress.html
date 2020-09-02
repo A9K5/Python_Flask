@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+        <title>
+        </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="l1">            
+            {% for key,value in tasks.items() %}  
+                {%  if key == 'Items' %}
+                    {%  for item in value %}     
+                    <div class="l2">                             
+                            <h6>Dear {{item['NAME1']}}, ur known locations. </h6>
+                    </div>
+                        {% for key1,val in item.ADDRESS.items() %}
+                            {% if val[0] != '0' %}
+                                <div class="card">
+                                    <form action="{{ url_for('createAddress')}}" method="POST">
+                                        <div class="container">
+                                        <input type="hidden" name="_id" value="{{ item['_id'] }}" placeholder="{{ item['_id'] }}" >
+                                        <h4>{{ key1 }}</h4>
+                                        <input type="hidden" name="select" value={{ key1 }} placeholder="{{ key1 }}">
+                                        <input type="text" name="line1" value={{val[0]}} placeholder="{{ val[0] }}" size="25" >
+                                        <input type="text" name="contactno" value={{val[2]}} placeholder="{{ val[2] }}" size="25" >
+                                        <textarea name="line2" row="4" cols="30" value={{val[1]}} placeholder="{{ val[1] }}">{{ val[1]}}</textarea>
+                                        <button type="submit" name="action1" value="Edit" class="btn"><i class="fa fa-pencil"></i></button>
+                                        <button type="submit" name="action1" value="Delete" class="btn"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                        <p></p>
+                                    </form>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}                   
+            {% endfor %}        
+            <div class="l3">                       
+                <form action="{{ url_for('createAddress')}}" method="GET">
+                    <h6> {{name5}} add a new address location </h6>
+                    <input readonly type="hidden" name="_id" value="{{_id}}">
+                    <select name="select">
+                        <option value=""> </option>
+                        <option value="A1">Home </option>
+                        <option value="A2">Office</option>
+                        <option value="A3">Sec 1</option>
+                        <option value='A4'>Sec 2</option>
+                        <option value='A5'>Sec 3</option>
+                    </select>
+                    <input type="text" name="line1" placeholder="City">
+                    <input type="text" name="contactno" placeholder="Contact no.">
+                    <textarea name="line2" row="4" cols="20" placeholder="Enter address"></textarea>
+                    <button type="submit" name="action1" value="Edit" class="btn"><i class="fa fa-plus"></i></button>                    
+                </form>
+            </div>
+        </div> 
+
+    </body>
+</html>
