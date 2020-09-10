@@ -1,7 +1,7 @@
 <h1 align="centre">Python_Flask
 </h1>
 
-<h2> My Repo containing the list of different Flask Projects. </h2>
+<h2> Reposotory containing the list of different Flask Projects 📘</h2>
 
 
 <h2 align="centre">
@@ -38,9 +38,35 @@ This list contains the list of different Python Flask projects that I have under
 <hr>
 
 
-Complete in detail description is pending.
+This list contains the projects  undertaken in Python Flask by me. Some of them were named during the early days so you may end up seeing wierd 👾 nomenclatures. 
 
-To be completed later.
+After that I have moved to a more robust system of naming project folders datewise(<strong>*`start date`*</strong>) which makes it more easier to put a kind of timeline on the work done (`missions accomplished 🎉 🏆 🎉`) on each day.
+The 
+
+- 03_09_20
+- 04_09_20
+- 05_09_20
+- 06_09_20
+- 07_09_20
+- 08_09_20
+- 09MongoCRUD
+- 2.0v09MongoCRUD
+- 31_08_20
+- FlaskBlueprint
+- FlaskBlueprint_v2.0
+- GoogleCharts
+- ServerMonitoring Dashboard
+- ServerMonitoringDashboard2
+- ServerMonitoringDashboard3
+- To-Do-List-using-Flask-and-MongoDB-master
+- flask-classy
+- flask-classy_2
+- flaskdynamo_v1_completeWithCardsTwoPage
+- flaskdynamo_v1_completeWithCardsTwoPage (copy)
+- flaskdynamo_v1_completeWithCardsTwoPage_API_Version
+- flaskdynamo_v1_completeWithCardsTwoPage_API_Version_json_req_type
+- flaskdynamo_v1_completeWithCardsTwoPage_API_Version_json_req_type (another copy)
+- flaskdynamo_v1_completeWithCardsTwoPage_API_Version_json_req_type (copy)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
