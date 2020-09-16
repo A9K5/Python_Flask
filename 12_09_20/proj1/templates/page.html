@@ -50,7 +50,7 @@
             <p>Enter IMDB Link over here</p>
             <form method="POST" class="col s12" action={{ url_for('add_playlist') }}> 
                     <div class="input-field col s6">
-                        <input placeholder="Link: https:// or http://" name="link" type="text" class="validate">
+                        <input name="movie_name" placeholder="Link: https:// or http://"  type="text" class="validate">
                     </div>
                     <div class="modal-footer center">
                         <input type="submit" value="Enter" class="modal-close waves-effect waves-green btn-flat"> 
@@ -75,9 +75,9 @@
 <div id="modal2" class="modal">
         <div class="modal-content">
             <p>Enter IMDB Link over here</p>
-            <form method="POST" class="col s12" action={{ url_for('add_list') }}> 
+            <form method="get" class="col s12" action={{ url_for('add_list') }}> 
                     <div class="input-field col s6">
-                        <input placeholder="Link: https:// or http://" name="link" type="text" class="validate">
+                        <input placeholder="Link: https:// or http://" name="movie_name" type="text" class="validate">
                     </div>
                     <div class="modal-footer center">
                         <input type="submit" value="Enter" class="modal-close waves-effect waves-green btn-flat"> 
@@ -117,7 +117,7 @@
                                     <p>{{ post['duration']}}</p>
                                     <!-- <h3>{{ post['thumbnailUrl']}}</h3> -->
                                         {% if not post['watched'] %}
-                                        <form action="{{ url_for('mark_watched', id=post['movie_id']) }}" method="post">
+                                        <form action="{{ url_for('mark_watched', id=post['movie_id']) }}" method="get">
                                             <input class="danger tags" type="submit" value=" Watch it !" onclick="return confirm('Are you sure?');">
                                         </form>
                                         {% endif %}

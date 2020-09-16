@@ -10,7 +10,6 @@ import requests
 import json
 
 
-
 from flask_restful import Api
 from flask_jwt_extended import (JWTManager, jwt_required, 
                                 jwt_refresh_token_required, 
@@ -59,6 +58,7 @@ class Movie(db.Model):
 
 
 
+
 def assign_access_refresh_tokens(user_id, url):
     # access_token = create_access_token(identity=str(user_id))
     access_token = create_access_token(identity=str(user_id))
@@ -103,29 +103,19 @@ def show():
 def loginpage():
     return render_template('login.html')
 
-# @app.route('/login', methods=['POST'])
-# def login():
-#     # // Verify username and password //
-#     data = request.get_json()
-#     username = data['username']
-#     password = data['password']
-#     return assign_access_refresh_tokens(username , app.config['BASE_URL'] + '/')
+
 
 
 @app.route('/login',methods=['POST'])
 def login():
-    # print(request)
-    # auth = request.authorization
-
-    # if not auth or not auth.username or not auth.password:
-    #     return make_response('Could not verify',401,{'WWW-Authenticate':'Basic realm="Login Required!"' })
 
     username = request.form['username']
     password = request.form['password']
     user = User.query.filter_by(name=username).first()
     print(username,password)
     if not user:
-        return make_response('Could not verify',401,{'WWW-Authenticate':'Basic realm="Login Required!"' })
+        return unset_jwt(), 302
+        # return make_response('Could not verify',401,{'WWW-Authenticate':'Basic realm="Login Required!"' })
 
     if check_password_hash(user.password,password):
         # token = jwt.encode({'public_id':user.public_id , 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=40)},app.config['SECRET_KEY'])
@@ -133,7 +123,8 @@ def login():
         return  assign_access_refresh_tokens(user.user_id , app.config['BASE_URL'] + '/show')
 
 
-    return make_response('Could not verify',401,{'WWW-Authenticate':'Basic realm="Login Required!"' })
+    return unset_jwt(), 302
+    # return make_response('Could not verify',401,{'WWW-Authenticate':'Basic realm="Login Required!"' })
 
 @app.route('/logout',methods=['GET'])
 @jwt_required
@@ -165,35 +156,47 @@ def add_playlist():
     return redirect(url_for('show_movie'))
     # return jsonify({"message":'Playlist addded'})
 
-@app.route('/add_list', methods=['POST'])
+
+
+@app.route('/add_list', methods=['GET'])
 @jwt_required
 def add_list():
     # add the parser for movies data over here. and then put the whole data using the below code.
     # data = request.get_json()
-
+    user_public_id = get_jwt_identity()
+    print(user_public_id)
     def get_ld_json(url: str) -> dict:
         parser = "html.parser"
         req = requests.get(url)
         soup = BeautifulSoup(req.text, parser)
         return json.loads("".join(soup.find("script", {"type":"application/ld+json"}).contents))
 
-    d = get_ld_json(request.form['link'])
+    print(str(request.args['movie_name']))
+    d = get_ld_json(str(request.args['movie_name']))
+        # request.form['link'])
     # print(d)
-    # print(d['genre'])
-    # print(d['name'])
+    print(d['genre'])
+    print(d['name'])
     # print(d['director']['name'])
-    # print(d['duration'])
+    print(d['duration'])
+
     data = {}
     data['name'] = d['name']
     data['genre'] = " ".join(d['genre'])
-    data['director_name'] = d['director']['name']
+    if type(d['director'])==dict:
+        data['director_name'] = d['director']['name']
+    else:
+        data['director_name'] = d['director'][0]['name']
+
     data['thumbnailUrl'] = d['trailer']['thumbnailUrl']
     data['duration'] = d['duration'][2:]
     data['rating'] = d['aggregateRating']['ratingValue']
     data['date_published']=d['datePublished'][:4]
     data['description'] = d['description'][:100]
     
-    data['user_id'] = int(request.form['user_id'])
+    data['user_id'] = user_public_id
+    # int(request.form['user_id'])
+    
     print(data)
     # return jsonify(data)
     try:
@@ -213,10 +216,16 @@ def add_list():
                         )   
         db.session.add(new_movie)
         db.session.commit() 
-        return jsonify( {'message':'New movie Created . '})
+        return redirect(url_for('show_movie'))
+
+        # jsonify( {'message':'New movie Created . '})
+    
+    
     except:
         db.session.rollback()
-        return jsonify( {'message':'Movie already exist for the user. '})
+        return redirect(url_for('show_movie'))
+    
+        # jsonify( {'message':'Movie already exist for the user. '})
 
     
     # return redirect(url_for('show_movie'))
@@ -236,7 +245,7 @@ def add_list():
 
 
 # working fine
-@app.route('/show',methods=['GET','POST'])
+@app.route('/show',methods=['GET'])
 @jwt_required
 def show_movie():
     user_public_id = get_jwt_identity()
@@ -291,11 +300,11 @@ def binge():
 
     return render_template('page.html',posts=post)
 
-@app.route('/<string:id>/mark_watched',methods=['POST'])
+@app.route('/<string:id>/mark_watched',methods=['GET'])
 @jwt_required
 def mark_watched(id):
     print(id)
-    if request.method=='POST':
+    if request.method=='GET':
         data = Movie.query.filter_by(movie_id=id).first()#.update(watched=True)
         data.watched=True
         # db.session.update(data)
