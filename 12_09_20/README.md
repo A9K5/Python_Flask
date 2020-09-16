@@ -31,6 +31,7 @@ This project extensively used <code>Flask_Jwt_Extended </code> package to assist
 ![](https://github.com/A9K5/Python_Flask/blob/master/12_09_20/images/4f4nnl.gif)
 
 <hr>
+
 ### Extra Things 👌
 - The POSTMAN folder will contain all the API's.
 
